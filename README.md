@@ -1,4 +1,4 @@
-# SIGAP · Sistem Informasi Hulu–Hilir untuk Pemulihan
+# SIGAP · Sistem Informasi Geospasial untuk Antisipasi dan Pemulihan
 
 Aplikasi web progresif (PWA) untuk esai **Essay Quest DateraQuest 2.0 (ITERA)**, subtema Lingkungan dan Agrikultur.
 Aplikasi ini menghubungkan hutan lereng curam yang hilang di hulu dengan kabupaten/kota yang terdampak banjir bandang
@@ -62,3 +62,7 @@ Semua data ada di `public/data/` dan dihasilkan dari notebook analisis v4/v5:
   Lapisan "Hujan kumulatif IMERG" pada Putar Ulang otomatis aktif.
 
 `tools/siapkan_data.py` membangun ulang `kab.json` dan berkas lain dari `master_panel_v4.csv`.
+
+## Analisis dan reproduksi
+
+Notebook analisis, data panel, dan skrip Google Earth Engine yang menghasilkan angka di naskah ada di folder [`analisis/`](analisis/).
