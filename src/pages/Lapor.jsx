@@ -50,6 +50,48 @@ export function DaftarCek({ cek, detail = {} }) {
   )
 }
 
+function KameraLangsung({ onFoto }) {
+  const vid = useRef(null), aliran = useRef(null)
+  const [buka, setBuka] = useState(false)
+  const [galat, setGalat] = useState('')
+  const [siap, setSiap] = useState(false)
+  const tutup = () => { aliran.current?.getTracks().forEach(t => t.stop()); aliran.current = null; setSiap(false); setBuka(false) }
+  useEffect(() => () => aliran.current?.getTracks().forEach(t => t.stop()), [])
+  const mulai = async () => {
+    setGalat(''); setBuka(true)
+    if (!navigator.mediaDevices?.getUserMedia) { setGalat('Browser ini tidak mendukung kamera langsung. Gunakan tombol "Ambil foto" di bawah.'); return }
+    try {
+      const s = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' }, width: { ideal: 1920 }, height: { ideal: 1080 } }, audio: false })
+      aliran.current = s
+      if (vid.current) { vid.current.srcObject = s; await vid.current.play().catch(() => {}) }
+      setSiap(true)
+    } catch {
+      setGalat('Kamera tidak bisa diakses. Izinkan kamera di pengaturan browser, atau gunakan tombol "Ambil foto" di bawah.')
+    }
+  }
+  const jepret = () => {
+    const v = vid.current; if (!v || !v.videoWidth) return
+    const c = document.createElement('canvas'); c.width = v.videoWidth; c.height = v.videoHeight
+    c.getContext('2d').drawImage(v, 0, 0, c.width, c.height)
+    c.toBlob(b => { if (!b) return; onFoto(new File([b], `kamera-${Date.now()}.jpg`, { type: 'image/jpeg', lastModified: Date.now() })); tutup() }, 'image/jpeg', 0.9)
+  }
+  return (
+    <>
+      <button type="button" className="btn btn-em btn-penuh btn-k" onClick={mulai}><Icon n="camera" s={16} /> Kamera langsung</button>
+      {buka && (
+        <div className="kamera-kotak" style={{ marginTop: 10, borderRadius: 16, overflow: 'hidden', background: '#000', position: 'relative' }}>
+          <video ref={vid} playsInline muted style={{ width: '100%', display: 'block', aspectRatio: '4 / 3', objectFit: 'cover' }} />
+          <div className="dua" style={{ padding: 10 }}>
+            <button type="button" className="btn btn-garis btn-k" onClick={tutup}>Batal</button>
+            <button type="button" className="btn btn-em btn-k" onClick={jepret} disabled={!siap}>{siap ? 'Jepret' : 'Menyiapkan…'}</button>
+          </div>
+        </div>
+      )}
+      {galat && <p className="catatan" style={{ color: 'var(--red)' }}>{galat}</p>}
+    </>
+  )
+}
+
 export default function Lapor({ data, profil, store }) {
   const [l, setL] = useState(0)
   const [gps, setGps] = useState(null)          // {lat, lon, akurasi, waktu}
@@ -195,11 +237,12 @@ export default function Lapor({ data, profil, store }) {
 
           {l === 1 && (
             <>
+              <KameraLangsung onFoto={f => tambahFile([f], 'foto')} />
               <div className="unggah">
                 <label><Icon n="camera" s={26} />Ambil foto<small>dikompres ±1600 px</small><input type="file" accept="image/*" capture="environment" multiple onChange={e => { tambahFile(e.target.files, 'foto'); e.target.value = '' }} /></label>
                 <label><Icon n="video" s={26} />Rekam video<small>maks 60 MB, ±30 detik</small><input type="file" accept="video/*" capture="environment" onChange={e => { tambahFile(e.target.files, 'video'); e.target.value = '' }} /></label>
               </div>
-              <label className="btn btn-garis btn-penuh btn-k" style={{ cursor: 'pointer' }}><Icon n="image" s={16} /> Pilih dari galeri<input type="file" accept="image/*,video/*" multiple hidden onChange={e => { const fs = Array.from(e.target.files); tambahFile(fs.filter(f => f.type.startsWith('image')), 'foto').then(() => tambahFile(fs.filter(f => f.type.startsWith('video')), 'video')); e.target.value = '' }} /></label>
+              <label className="btn btn-garis btn-penuh btn-k" style={{ cursor: 'pointer', position: 'relative', overflow: 'hidden' }}><Icon n="image" s={16} /> Pilih dari galeri<input type="file" accept="image/*,video/*" multiple className="ov" onChange={e => { const fs = Array.from(e.target.files); tambahFile(fs.filter(f => f.type.startsWith('image')), 'foto').then(() => tambahFile(fs.filter(f => f.type.startsWith('video')), 'video')); e.target.value = '' }} /></label>
               {proses && <p className="catatan">Memproses berkas…</p>}
               {media.length > 0 && (
                 <div className="media-grid">

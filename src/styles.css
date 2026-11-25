@@ -362,7 +362,8 @@ h1, h2, h3, h4, p { margin: 0; }
 .unggah { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .unggah label { display: grid; justify-items: center; gap: 6px; padding: 18px 10px; border-radius: 16px; border: 1.5px dashed #B7CCC3; background: var(--em-50); color: var(--em-700); font-size: 13px; font-weight: 700; cursor: pointer; text-align: center; }
 .unggah label small { font-size: 10.5px; color: var(--ink-3); font-weight: 500; }
-.unggah input { display: none; }
+.unggah label { position: relative; overflow: hidden; }
+.unggah input, input.ov { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; z-index: 2; font-size: 0; }
 .media-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .media-t { position: relative; aspect-ratio: 1; border-radius: 14px; overflow: hidden; background: #0A2A22; }
 .media-t img, .media-t video { width: 100%; height: 100%; object-fit: cover; display: block; }
