@@ -3,12 +3,12 @@ import { useEffect, useState } from 'react'
 // Penyimpanan prototipe di perangkat: laporan dan notifikasi di localStorage,
 // berkas foto/video di IndexedDB. Perubahan disiarkan ke tab lain (BroadcastChannel)
 // sehingga alur pelapor -> petugas terlihat langsung bila dibuka di dua tab.
-const KL = 'sigap-laporan-v2', KN = 'sigap-notif-v2', KS = 'sigap-seed-v2'
-const kanal = typeof BroadcastChannel !== 'undefined' ? new BroadcastChannel('sigap') : null
+const KL = 'tapak-laporan-v2', KN = 'tapak-notif-v2', KS = 'tapak-seed-v2'
+const kanal = typeof BroadcastChannel !== 'undefined' ? new BroadcastChannel('tapak') : null
 let pendengar = []
 const kabari = () => { pendengar.forEach(f => f()); kanal?.postMessage('ubah') }
 kanal && (kanal.onmessage = () => pendengar.forEach(f => f()))
-if (typeof window !== 'undefined') addEventListener('storage', e => { if (e.key?.startsWith('sigap-')) pendengar.forEach(f => f()) })
+if (typeof window !== 'undefined') addEventListener('storage', e => { if (e.key?.startsWith('tapak-')) pendengar.forEach(f => f()) })
 
 const baca = k => { try { return JSON.parse(localStorage.getItem(k) || '[]') } catch { return [] } }
 const tulis = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)) } catch { /* penuh / privat */ } }
@@ -38,7 +38,7 @@ export const untukSaya = (n, p) => n.peran === p?.peran || (n.hp && n.hp === p?.
 // ---------- IndexedDB untuk foto dan video ----------
 let dbp = null
 const db = () => dbp || (dbp = new Promise((ok, gagal) => {
-  const r = indexedDB.open('sigap-media', 1)
+  const r = indexedDB.open('tapak-media', 1)
   r.onupgradeneeded = () => r.result.createObjectStore('m')
   r.onsuccess = () => ok(r.result); r.onerror = () => gagal(r.error)
 }))

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 // Prakiraan hujan langsung dari Open-Meteo (gratis, tanpa kunci API, model ECMWF/GFS/ICON).
 // Satu permintaan memuat banyak titik: koordinat dipisah koma, hasilnya berupa array.
 const API = 'https://api.open-meteo.com/v1/forecast'
-const KC = 'sigap-cuaca-v1'
+const KC = 'tapak-cuaca-v1'
 
 // Kategori hujan harian BMKG (mm/hari)
 export const KATEGORI = [

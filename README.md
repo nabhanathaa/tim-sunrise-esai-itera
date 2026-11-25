@@ -1,11 +1,11 @@
-# SIGAP · Sistem Informasi Geospasial untuk Antisipasi dan Pemulihan
+# TAPAK · Teknologi Analisis, Pemantauan, dan Akselerasi Pemulihan
 
 Aplikasi web progresif (PWA) untuk esai **Essay Quest DateraQuest 2.0 (ITERA)**, subtema Lingkungan dan Agrikultur.
 Aplikasi ini menghubungkan hutan lereng curam yang hilang di hulu dengan kabupaten/kota yang terdampak banjir bandang
 dan longsor di hilir, lalu menerjemahkannya menjadi prioritas pemulihan (R3P) untuk 154 kabupaten/kota Sumatera.
 
-> Nama "SIGAP" masih sementara. Untuk menggantinya, ubah **satu berkas saja**: `src/config.js`
-> (nama, kepanjangan, slogan). Judul tab, layar masuk, chatbot, dan manifest PWA ikut berubah.
+> Nama dan kepanjangan aplikasi diatur di satu berkas: `src/config.js`.
+> Judul tab, layar masuk, chatbot, dan manifest PWA mengikuti nilai di berkas itu.
 
 ## Tampilan
 

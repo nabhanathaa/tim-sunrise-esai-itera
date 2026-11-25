@@ -16,7 +16,7 @@ const LANGKAH = {
   saat: ['Segera menjauh dari bantaran sungai dan kaki lereng menuju tempat tinggi.', 'Jangan menyeberangi arus: 15 cm air deras dapat menjatuhkan orang dewasa.', 'Matikan listrik dari sakelar utama bila aman.', 'Bantu lansia, anak, dan penyandang disabilitas lebih dulu.', 'Laporkan dari tempat aman lewat tombol Lapor.'],
   sesudah: ['Kembali hanya setelah dinyatakan aman oleh petugas.', 'Waspadai longsor susulan; jangan mendekati tebing yang retak.', 'Rebus air minum dan bersihkan rumah dengan sarung tangan dan sepatu bot.', 'Catat dan foto kerusakan untuk pendataan bantuan R3P.']
 }
-const KUNCI = 'sigap-tas-v1'
+const KUNCI = 'tapak-tas-v1'
 const baca = () => { try { return JSON.parse(localStorage.getItem(KUNCI) || '[]') } catch { return [] } }
 
 export default function Panduan() {

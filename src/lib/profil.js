@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 
-const KEY = 'sigap-profil-v2'
+const KEY = 'tapak-profil-v2'
 export const PERAN = [
   { id: 'warga', nama: 'Warga & relawan', jabatan: 'Pelapor lapangan', ikon: 'users',
     tugas: 'Mengirim laporan bergeotag, memantau siaga hujan di wilayahnya, dan membaca panduan evakuasi.',

@@ -3,8 +3,8 @@
 //  PWA, chatbot, dan tab peramban mengikuti nilai di bawah.
 // ============================================================
 export const APP = {
-  nama: 'SIGAP',
-  kepanjangan: 'Sistem Informasi Geospasial untuk Antisipasi dan Pemulihan',
+  nama: 'TAPAK',
+  kepanjangan: 'Teknologi Analisis, Pemantauan, dan Akselerasi Pemulihan',
   slogan: 'Baca hulu, lindungi hilir.',
   deskripsi: 'Peta risiko 154 kabupaten/kota Sumatera, siaga hujan langsung, lapor kejadian bergeotag, dan prioritas pemulihan (R3P) pascabanjir dan longsor.',
   tim: 'Tim Sunrise',

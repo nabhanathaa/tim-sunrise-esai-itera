@@ -1,6 +1,6 @@
 # Analisis esai: data, notebook, dan skrip Google Earth Engine
 
-Folder ini memuat bahan yang dipakai untuk menghasilkan angka di naskah esai dan data di aplikasi SIGAP.
+Folder ini memuat bahan yang dipakai untuk menghasilkan angka di naskah esai dan data di aplikasi TAPAK.
 
 | Berkas | Isi |
 |---|---|
